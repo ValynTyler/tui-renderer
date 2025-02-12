@@ -26,17 +26,17 @@ impl Canvas {
         self._height
     }
 
-    // pub fn chars(&self) -> Vec<char> {
-    //     let mut v = vec![];
+    pub fn chars(&self) -> Vec<char> {
+        let mut v = vec![];
 
-    //     for i in 0..self.height() {
-    //         for j in 0..self.width() {
-    //             v.push(self.get(j, i))
-    //         }
-    //     }
+        for i in 0..self.height() {
+            for j in 0..self.width() {
+                v.push(self.get((j, i)))
+            }
+        }
 
-    //     v
-    // }
+        v
+    }
 }
 
 impl RenderElement for Canvas {
