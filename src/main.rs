@@ -1,17 +1,9 @@
-use tui_renderer::terminal::canvas::*;
-use tui_renderer::terminal::render::surface::*;
-use tui_renderer::terminal::render::element::*;
+use tui_renderer::terminal::{canvas::*, render::Renderable};
 
 fn main() {
     let mut canvas = Canvas::new(90, 14, '.');
     let mut square = Canvas::new(5, 4, 'x');
-    let mut string = Canvas::from(
-        r#"Hello, world!
-        It's a brand new day!
-        foo
-        barfoobarfoobarfoobarfoobarfoobarfoobarfoo
-        bar"#
-    );
+    let string = Canvas::from("Hello, world!\nfoo\nbar");
 
     square.set((0, 0), '0');
     square.set((1, 1), '1');

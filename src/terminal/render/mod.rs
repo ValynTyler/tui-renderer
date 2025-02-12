@@ -1,2 +1,5 @@
-pub mod element;
-pub mod surface;
+use super::canvas::Canvas;
+
+pub trait Renderable {
+    fn render(&self, position: (usize, usize), canvas: &mut Canvas);
+}
