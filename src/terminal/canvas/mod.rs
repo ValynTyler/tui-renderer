@@ -1,7 +1,5 @@
 use std::fmt::Display;
 
-use super::render::Renderable;
-
 pub struct Canvas{
     string: String,
     _width: usize,
@@ -53,13 +51,17 @@ impl Canvas {
 
         v
     }
-}
 
-impl Renderable for Canvas {
-    fn render(&self, pos: (usize, usize), surface: &mut Canvas) {
+    pub fn render(&self, pos: (usize, usize), canvas: &mut Canvas) {
         for i in 0..self.height() {
             for j in 0..self.width() {
-                surface.set((j + pos.0, i + pos.1), self.get((j, i)))
+                let x = pos.0 + j;
+                let y = pos.1 + i;
+
+                if x < canvas.width()
+                && y < canvas.height() {
+                    canvas.set((x, y), self.get((j, i)))
+                }
             }
         }
     }
