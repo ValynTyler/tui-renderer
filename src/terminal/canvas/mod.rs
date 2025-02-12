@@ -52,10 +52,13 @@ impl Canvas {
         self.string = chars.iter().collect();
     }
 
-    pub fn render(&mut self, x: usize, y: usize, other: Canvas) {
-        // let _ = self.
+    pub fn render(&mut self, x: usize, y: usize, other: &Canvas) {
 
-        todo!()
+        for i in 0..other.height() {
+            for j in 0..other.width() {
+                self.set(j + x, i + y, '^')
+            }
+        }
     }
 }
 
