@@ -9,6 +9,8 @@ fn main() {
     square.set(3, 3, '3');
 
     canvas.render(5, 5, &square);
+    canvas.render(15, 0, &square);
+    canvas.render(60, 9, &square);
 
     println!("{}", canvas);
     println!("{}", square);
