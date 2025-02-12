@@ -1,5 +1,8 @@
 use std::fmt::Display;
 
+use super::render::surface::RenderSurface;
+use super::render::element::RenderElement;
+
 pub struct Canvas{
     string: String,
     _width: usize,
@@ -23,42 +26,46 @@ impl Canvas {
         self._height
     }
 
-    pub fn chars(&self) -> Vec<char> {
-        let mut v = vec![];
+    // pub fn chars(&self) -> Vec<char> {
+    //     let mut v = vec![];
 
-        for i in 0..self.height() {
-            for j in 0..self.width() {
-                v.push(self.get(j, i))
-            }
-        }
+    //     for i in 0..self.height() {
+    //         for j in 0..self.width() {
+    //             v.push(self.get(j, i))
+    //         }
+    //     }
 
-        v
-    }
+    //     v
+    // }
+}
 
-    pub fn get(&self, x: usize, y: usize) -> char {
+impl RenderElement for Canvas {
+    fn get(&self, pos: (usize, usize)) -> char {
         let row_len = self.width() + 2;
-        let index = y * row_len + x;
+        let index = pos.1 * row_len + pos.0;
 
         self.string.char_indices().nth(index).unwrap().1
     }
 
-    pub fn set(&mut self, x: usize, y: usize, value: char) {
+    fn render<T>(&self, pos: (usize, usize), surface: &mut T)
+    where T: RenderSurface {
+        for i in 0..self.height() {
+            for j in 0..self.width() {
+                surface.set((j + pos.0, i + pos.1), self.get((j, i)))
+            }
+        }
+    }
+}
+
+impl RenderSurface for Canvas {
+    fn set(&mut self, pos: (usize, usize), value: char) {
         let row_len = self.width() + 2;
-        let index = y * row_len + x;
+        let index = pos.1 * row_len + pos.0;
 
         let mut chars: Vec<char> = self.string.chars().collect();
         chars[index] = value;
 
         self.string = chars.iter().collect();
-    }
-
-    pub fn render(&mut self, x: usize, y: usize, other: &Canvas) {
-
-        for i in 0..other.height() {
-            for j in 0..other.width() {
-                self.set(j + x, i + y, other.get(j, i))
-            }
-        }
     }
 }
 
