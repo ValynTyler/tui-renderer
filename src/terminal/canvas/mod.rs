@@ -56,7 +56,7 @@ impl Canvas {
 
         for i in 0..other.height() {
             for j in 0..other.width() {
-                self.set(j + x, i + y, '^')
+                self.set(j + x, i + y, other.get(j, i))
             }
         }
     }
