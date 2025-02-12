@@ -52,17 +52,18 @@ impl Canvas {
         v
     }
 
-    pub fn render(self, pos: (usize, usize), source: &Canvas) -> Canvas {
+    pub fn render(self, pos: (isize, isize), source: &Canvas) -> Canvas {
         let mut target = self;
 
         for i in 0..source.height() {
             for j in 0..source.width() {
-                let x = pos.0 + j;
-                let y = pos.1 + i;
+                let x = pos.0 + j as isize;
+                let y = pos.1 + i as isize;
 
-                if x < target.width()
-                && y < target.height() {
-                    target.set((x, y), source.get((j, i)))
+                if x < target.width() as isize
+                && y < target.height() as isize
+                && x >= 0 && y >= 0 {
+                    target.set((x as usize, y as usize), source.get((j, i)))
                 }
             }
         }
