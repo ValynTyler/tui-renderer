@@ -69,6 +69,25 @@ impl RenderSurface for Canvas {
     }
 }
 
+impl From::<&str> for Canvas {
+    fn from(value: &str) -> Self {
+        let line_count = value.lines().count();
+        let mut max_char_count = 0;
+        value.lines().for_each(|line| {
+            max_char_count = max_char_count.max(line.chars().count());
+        });
+
+        let mut canvas = Canvas::new(max_char_count, line_count, ' ');
+        value.lines().enumerate().for_each(|(i, s)| {
+            s.chars().enumerate().for_each(|(j, c)| {
+                canvas.set((j, i), c);
+            });
+        });
+
+        canvas
+    }
+}
+
 impl Display for Canvas {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(f, "{}", self.string)
