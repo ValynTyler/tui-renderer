@@ -52,18 +52,22 @@ impl Canvas {
         v
     }
 
-    pub fn render(&self, pos: (usize, usize), canvas: &mut Canvas) {
-        for i in 0..self.height() {
-            for j in 0..self.width() {
+    pub fn render(self, pos: (usize, usize), source: &Canvas) -> Canvas {
+        let mut target = self;
+
+        for i in 0..source.height() {
+            for j in 0..source.width() {
                 let x = pos.0 + j;
                 let y = pos.1 + i;
 
-                if x < canvas.width()
-                && y < canvas.height() {
-                    canvas.set((x, y), self.get((j, i)))
+                if x < target.width()
+                && y < target.height() {
+                    target.set((x, y), source.get((j, i)))
                 }
             }
         }
+
+        target
     }
 }
 
