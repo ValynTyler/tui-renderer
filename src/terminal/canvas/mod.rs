@@ -8,8 +8,9 @@ pub struct Canvas{
 
 impl Canvas {
     pub fn new(width: usize, height: usize) -> Self {
+        let c = '█';
         Canvas {
-            string: ('.'.to_string().repeat(width) + "\r\n").repeat(height - 1) + &'.'.to_string().repeat(width),
+            string: (c.to_string().repeat(width) + "\r\n").repeat(height - 1) + &c.to_string().repeat(width),
             _width: width,
             _height: height,
         }
@@ -21,6 +22,23 @@ impl Canvas {
 
     pub fn height(&self) -> usize {
         self._height
+    }
+
+    pub fn get(&self, x: usize, y: usize) -> char {
+        let row_len = self.width() + 2;
+        let index = y * row_len + x;
+
+        self.string.char_indices().nth(index).unwrap().1
+    }
+
+    pub fn set(&mut self, x: usize, y: usize, value: char) {
+        let row_len = self.width() + 2;
+        let index = y * row_len + x;
+
+        let mut chars: Vec<char> = self.string.chars().collect();
+        chars[index] = value;
+
+        self.string = chars.iter().collect();
     }
 }
 
