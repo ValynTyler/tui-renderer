@@ -13,7 +13,7 @@ fn main() {
     string.render((5, 5), &mut canvas);
     square.render((15, 0), &mut canvas);
     square.render((60, 9), &mut canvas);
-    string.render((20, 10), &mut canvas);
+    string.render((86, 12), &mut canvas);
 
     println!("{}", canvas);
 }
