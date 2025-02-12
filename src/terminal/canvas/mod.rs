@@ -7,10 +7,9 @@ pub struct Canvas{
 }
 
 impl Canvas {
-    pub fn new(width: usize, height: usize) -> Self {
-        let c = '█';
+    pub fn new(width: usize, height: usize, fill: char) -> Self {
         Canvas {
-            string: (c.to_string().repeat(width) + "\r\n").repeat(height - 1) + &c.to_string().repeat(width),
+            string: (fill.to_string().repeat(width) + "\r\n").repeat(height - 1) + &fill.to_string().repeat(width),
             _width: width,
             _height: height,
         }
