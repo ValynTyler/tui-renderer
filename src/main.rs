@@ -1,7 +1,7 @@
 use tui_renderer::terminal::canvas::Canvas;
 
 fn main() {
-    let _canvas = Canvas;
+    let canvas = Canvas::new(5, 4);
 
-    println!("Hello, world!");
+    println!("{}", canvas);
 }
