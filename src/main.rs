@@ -1,12 +1,15 @@
 use tui_renderer::terminal::canvas::Canvas;
 
 fn main() {
-    let mut canvas = Canvas::new(10, 4, '.');
-    canvas.set(0, 0, '0');
-    canvas.set(1, 1, '1');
-    canvas.set(2, 2, '2');
-    canvas.set(3, 3, '3');
+    let mut canvas = Canvas::new(90, 14, '.');
+    let mut square = Canvas::new(4, 4, 'x');
+    square.set(0, 0, '*');
+    square.set(1, 1, '*');
+    square.set(2, 2, '*');
+    square.set(3, 3, '*');
+
+    println!("{:?}", square.chars());
 
     println!("{}", canvas);
-    println!("{}x{}", canvas.width(), canvas.height());
+    println!("{}", square);
 }

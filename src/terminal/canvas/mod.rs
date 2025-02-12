@@ -23,6 +23,18 @@ impl Canvas {
         self._height
     }
 
+    pub fn chars(&self) -> Vec<char> {
+        let mut v = vec![];
+
+        for i in 0..self.height() {
+            for j in 0..self.width() {
+                v.push(self.get(j, i))
+            }
+        }
+
+        v
+    }
+
     pub fn get(&self, x: usize, y: usize) -> char {
         let row_len = self.width() + 2;
         let index = y * row_len + x;
@@ -38,6 +50,12 @@ impl Canvas {
         chars[index] = value;
 
         self.string = chars.iter().collect();
+    }
+
+    pub fn render(&mut self, x: usize, y: usize, other: Canvas) {
+        // let _ = self.
+
+        todo!()
     }
 }
 
