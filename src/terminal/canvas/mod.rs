@@ -91,6 +91,12 @@ impl From::<&str> for Canvas {
     }
 }
 
+impl From::<String> for Canvas {
+    fn from(value: String) -> Self {
+        value.as_str().into()
+    }
+}
+
 impl Display for Canvas {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(f, "{}", self.string)
