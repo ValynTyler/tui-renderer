@@ -14,9 +14,9 @@ fn main() {
     let x = canvas.width() / 2 - string.width() / 2;
     let y = canvas.height() / 2 - string.height();
     let canvas = canvas
-        .render((-1, 5), &square)
-        .render((86, 12), &string)
-        .render((x as isize, y as isize), &string);
+        .draw((-1, 5), &square)
+        .draw((86, 12), &string)
+        .draw((x as isize, y as isize), &string);
 
     println!("{}", canvas);
 }

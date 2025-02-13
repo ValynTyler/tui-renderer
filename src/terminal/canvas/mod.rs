@@ -52,7 +52,7 @@ impl Canvas {
         v
     }
 
-    pub fn render(self, pos: (isize, isize), source: &Canvas) -> Canvas {
+    pub fn draw(self, pos: (isize, isize), source: &Canvas) -> Canvas {
         let mut target = self;
 
         for i in 0..source.height() {
