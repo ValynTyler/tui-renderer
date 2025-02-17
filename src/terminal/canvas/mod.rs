@@ -19,6 +19,10 @@ impl Canvas {
         (self.width(), self.height())
     }
 
+    pub fn row(&self, index: usize) -> &[char] {
+        &self.0[index]
+    }
+
     pub fn get(&self, pos: (usize, usize)) -> char {
         self.0[pos.1][pos.0]
     }
@@ -74,7 +78,17 @@ impl From::<String> for Canvas {
 
 impl Display for Canvas {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        // write!(f, "{}", self.string)
-        todo!()
+        for i in 0..self.height() - 1 {
+            for j in 0..self.width() {
+                write!(f, "{}", self.get((j, i)))?;
+            }
+            writeln!(f)?;
+        }
+
+        for c in self.row(self.height() - 1) {
+            write!(f, "{}", c)?;
+        }
+
+        Ok(())
     }
 }
