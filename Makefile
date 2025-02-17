@@ -1,4 +1,4 @@
-default: test
+default: run
 
 run:
 	cargo run
