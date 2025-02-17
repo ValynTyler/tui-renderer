@@ -20,6 +20,17 @@ impl Canvas {
             }
         }
     }
+    pub fn width(&self) -> usize {
+        self._width
+    }
+
+    pub fn height(&self) -> usize {
+        self._height
+    }
+
+    pub fn size(&self) -> (usize, usize) {
+        (self.width(), self.height())
+    }
 
     pub fn get(&self, pos: (usize, usize)) -> char {
         let row_len = self.width() + 2;
@@ -36,14 +47,6 @@ impl Canvas {
         chars[index] = value;
 
         self.string = chars.iter().collect();
-    }
-
-    pub fn width(&self) -> usize {
-        self._width
-    }
-
-    pub fn height(&self) -> usize {
-        self._height
     }
 
     pub fn chars(&self) -> Vec<char> {
