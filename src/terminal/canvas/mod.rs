@@ -82,7 +82,7 @@ impl Display for Canvas {
             for j in 0..self.width() {
                 write!(f, "{}", self.get((j, i)))?;
             }
-            writeln!(f)?;
+            write!(f, "\r\n")?;
         }
 
         for c in self.row(self.height() - 1) {
