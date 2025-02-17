@@ -24,3 +24,37 @@ fn test_canvas_set() {
         }
     }
 }
+
+#[test]
+fn test_canvas_width() {
+    const MAX_LEN: usize = 5;
+    for i in 0..MAX_LEN {
+        for j in 0..MAX_LEN {
+            let canvas = Canvas::new(j, i, '.');
+            println!("{}", canvas.width());
+            assert_eq!(j, canvas.width());
+        }
+    }
+}
+
+#[test]
+fn test_canvas_height() {
+    const MAX_LEN: usize = 500;
+    for i in 0..MAX_LEN {
+        for j in 0..MAX_LEN {
+            let canvas = Canvas::new(j, i, '.');
+            assert_eq!(i, canvas.height());
+        }
+    }
+}
+
+#[test]
+fn test_canvas_size() {
+    const MAX_LEN: usize = 500;
+    for i in 0..MAX_LEN {
+        for j in 0..MAX_LEN {
+            let canvas = Canvas::new(j, i, '.');
+            assert_eq!((j, i), canvas.size());
+        }
+    }
+}
