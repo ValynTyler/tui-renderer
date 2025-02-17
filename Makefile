@@ -1,4 +1,4 @@
-default: bench
+default: test
 
 run:
 	cargo run
