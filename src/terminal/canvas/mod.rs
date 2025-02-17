@@ -9,10 +9,15 @@ pub struct Canvas{
 
 impl Canvas {
     pub fn new(width: usize, height: usize, fill: char) -> Self {
-        Canvas {
-            string: (fill.to_string().repeat(width) + "\r\n").repeat(height - 1) + &fill.to_string().repeat(width),
-            _width: width,
-            _height: height,
+        match height == 0 {
+            true => Canvas { string: String::new(), _width: width, _height: height },
+            false => {
+                Canvas {
+                    string: (fill.to_string().repeat(width) + "\r\n").repeat(height - 1) + &fill.to_string().repeat(width),
+                    _width: width,
+                    _height: height,
+                }
+            }
         }
     }
 
