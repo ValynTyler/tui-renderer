@@ -9,10 +9,10 @@ fn main() {
     square.set((2, 2), '2');
     square.set((3, 3), '3');
 
-    let canvas = Canvas::new(91, 14, '.');
+    let canvas = Canvas::new(91, 15, '.');
 
     let x = canvas.width() / 2 - string.width() / 2;
-    let y = canvas.height() / 2 - string.height();
+    let y = canvas.height() / 2 - string.height() / 2;
     let canvas = canvas
         .draw((-1, 5), &square)
         .draw((86, 12), &string)
