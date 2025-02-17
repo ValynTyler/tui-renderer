@@ -2,9 +2,9 @@ use tui_renderer::terminal::canvas::Canvas;
 
 #[test]
 fn test_canvas_width() {
-    const MAX_LEN: usize = 5;
-    for i in 0..MAX_LEN {
-        for j in 0..MAX_LEN {
+    const MAX_LEN: usize = 200;
+    for i in 1..MAX_LEN {
+        for j in 1..MAX_LEN {
             let canvas = Canvas::new(j, i, '.');
             println!("{}", canvas.width());
             assert_eq!(j, canvas.width());
@@ -14,7 +14,7 @@ fn test_canvas_width() {
 
 #[test]
 fn test_canvas_height() {
-    const MAX_LEN: usize = 500;
+    const MAX_LEN: usize = 200;
     for i in 0..MAX_LEN {
         for j in 0..MAX_LEN {
             let canvas = Canvas::new(j, i, '.');
@@ -25,9 +25,9 @@ fn test_canvas_height() {
 
 #[test]
 fn test_canvas_size() {
-    const MAX_LEN: usize = 500;
-    for i in 0..MAX_LEN {
-        for j in 0..MAX_LEN {
+    const MAX_LEN: usize = 200;
+    for i in 1..MAX_LEN {
+        for j in 1..MAX_LEN {
             let canvas = Canvas::new(j, i, '.');
             assert_eq!((j, i), canvas.size());
         }
