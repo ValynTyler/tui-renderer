@@ -10,3 +10,17 @@ fn test_canvas_get() {
         }
     }
 }
+
+#[test]
+fn test_canvas_set() {
+    let mut canvas = Canvas::new(50, 10, '.');
+
+    for i in 0..10 {
+        for j in 0..50 {
+            let pos = (j, i);
+            assert_eq!('.', canvas.get(pos));
+            canvas.set(pos, '$');
+            assert_eq!('$', canvas.get(pos));
+        }
+    }
+}
