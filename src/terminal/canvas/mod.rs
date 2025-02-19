@@ -1,11 +1,61 @@
 use std::fmt::Display;
 
+pub trait Position<T> {
+    fn x(&self) -> T;
+    fn y(&self) -> T;
+}
+
+impl Position<usize> for (usize, usize) {
+    fn x(&self) -> usize {
+        self.0
+    }
+
+    fn y(&self) -> usize {
+        self.1
+    }
+}
+
+impl Position<isize> for (isize, isize) {
+    fn x(&self) -> isize {
+        self.0
+    }
+
+    fn y(&self) -> isize {
+        self.1
+    }
+}
+
+pub trait Size<T> {
+    fn width(&self) -> T;
+    fn height(&self) -> T;
+}
+
+impl Size<usize> for (usize, usize) {
+    fn width(&self) -> usize {
+        self.0
+    }
+
+    fn height(&self) -> usize {
+        self.1
+    }
+}
+
+impl Size<isize> for (isize, isize) {
+    fn width(&self) -> isize {
+        self.0
+    }
+
+    fn height(&self) -> isize {
+        self.1
+    }
+}
+
 #[derive(Clone)]
 pub struct Canvas(Box<[Box<[char]>]>);
 
 impl Canvas {
-    pub fn new(width: usize, height: usize, fill: char) -> Self {
-        Canvas(vec![vec![fill; width].into(); height].into())
+    pub fn new(size: impl Size<usize>, fill: char) -> Self {
+        Canvas(vec![vec![fill; size.width()].into(); size.height()].into())
     }
 
     pub fn width(&self) -> usize {
@@ -28,21 +78,21 @@ impl Canvas {
         &self.0[index]
     }
 
-    pub fn get(&self, pos: (usize, usize)) -> char {
-        self.0[pos.1][pos.0]
+    pub fn get(&self, pos: impl Position<usize>) -> char {
+        self.0[pos.y()][pos.x()]
     }
 
-    pub fn set(&mut self, pos: (usize, usize), value: char) {
-        self.0[pos.1][pos.0] = value
+    pub fn set(&mut self, pos: impl Position<usize>, value: char) {
+        self.0[pos.y()][pos.x()] = value
     }
 
-    pub fn draw(self, pos: (isize, isize), source: &Canvas) -> Canvas {
+    pub fn draw(self, pos: impl Position<isize>, source: &Canvas) -> Canvas {
         let mut target = self;
 
         for i in 0..source.height() {
             for j in 0..source.width() {
-                let x = pos.0 + j as isize;
-                let y = pos.1 + i as isize;
+                let x = pos.x() + j as isize;
+                let y = pos.y() + i as isize;
 
                 if x < target.width() as isize
                 && y < target.height() as isize
@@ -64,7 +114,7 @@ impl From::<&str> for Canvas {
             max_char_count = max_char_count.max(line.chars().count());
         });
 
-        let mut canvas = Canvas::new(max_char_count, line_count, ' ');
+        let mut canvas = Canvas::new((max_char_count, line_count), ' ');
         value.lines().enumerate().for_each(|(i, s)| {
             s.chars().enumerate().for_each(|(j, c)| {
                 canvas.set((j, i), c);

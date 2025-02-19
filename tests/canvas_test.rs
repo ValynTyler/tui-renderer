@@ -5,7 +5,7 @@ fn test_canvas_width() {
     const MAX_LEN: usize = 200;
     for i in 1..MAX_LEN {
         for j in 1..MAX_LEN {
-            let canvas = Canvas::new(j, i, '.');
+            let canvas = Canvas::new((j, i), '.');
             println!("{}", canvas.width());
             assert_eq!(j, canvas.width());
         }
@@ -17,7 +17,7 @@ fn test_canvas_height() {
     const MAX_LEN: usize = 200;
     for i in 0..MAX_LEN {
         for j in 0..MAX_LEN {
-            let canvas = Canvas::new(j, i, '.');
+            let canvas = Canvas::new((j, i), '.');
             assert_eq!(i, canvas.height());
         }
     }
@@ -28,7 +28,7 @@ fn test_canvas_size() {
     const MAX_LEN: usize = 200;
     for i in 1..MAX_LEN {
         for j in 1..MAX_LEN {
-            let canvas = Canvas::new(j, i, '.');
+            let canvas = Canvas::new((j, i), '.');
             assert_eq!((j, i), canvas.size());
         }
     }
@@ -36,7 +36,7 @@ fn test_canvas_size() {
 
 #[test]
 fn test_canvas_get() {
-    let canvas = Canvas::new(50, 10, '.');
+    let canvas = Canvas::new((50, 10), '.');
 
     for i in 0..10 {
         for j in 0..50 {
@@ -47,7 +47,7 @@ fn test_canvas_get() {
 
 #[test]
 fn test_canvas_set() {
-    let mut canvas = Canvas::new(50, 10, '.');
+    let mut canvas = Canvas::new((50, 10), '.');
 
     for i in 0..10 {
         for j in 0..50 {
