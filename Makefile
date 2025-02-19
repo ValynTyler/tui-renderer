@@ -1,7 +1,7 @@
 default: run
 
 run:
-	cargo run
+	cargo run --example canvas_example
 
 test:
 	cargo test
