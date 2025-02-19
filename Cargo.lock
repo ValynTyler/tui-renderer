@@ -96,6 +96,11 @@ dependencies = [
 ]
 
 [[package]]
+name = "nslice"
+version = "0.1.0"
+source = "git+https://github.com/ValynTyler/nslice-rs.git#3618f07e2c0a3073c8e2773b628b9e09f82af4fb"
+
+[[package]]
 name = "parking_lot"
 version = "0.12.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -187,6 +192,21 @@ name = "tui-renderer"
 version = "0.1.0"
 dependencies = [
  "crossterm",
+ "unicode-box-builder",
+]
+
+[[package]]
+name = "tui-renderer"
+version = "0.1.0"
+source = "git+https://github.com/ValynTyler/tui-renderer.git#ed516e1c8ec4ab6663781a64d35d558296fdcb0f"
+
+[[package]]
+name = "unicode-box-builder"
+version = "0.1.0"
+source = "git+https://github.com/valyntyler/unicode-box-builder.git#5aaef36a579eda2a9fd2feb3d7bf31fb73465016"
+dependencies = [
+ "nslice",
+ "tui-renderer 0.1.0 (git+https://github.com/ValynTyler/tui-renderer.git)",
 ]
 
 [[package]]

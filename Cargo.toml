@@ -7,3 +7,4 @@ edition = "2021"
 
 [dev-dependencies]
 crossterm = "0.28.1"
+unicode-box-builder = { git = "https://github.com/valyntyler/unicode-box-builder.git" }
