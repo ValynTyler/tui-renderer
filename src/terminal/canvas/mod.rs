@@ -7,6 +7,7 @@ impl Canvas {
     pub fn new(width: usize, height: usize, fill: char) -> Self {
         Canvas(vec![vec![fill; width].into(); height].into())
     }
+
     pub fn width(&self) -> usize {
         self.0[0].len()
     }
