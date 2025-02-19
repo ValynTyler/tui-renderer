@@ -20,6 +20,10 @@ impl Canvas {
         (self.width(), self.height())
     }
 
+    pub fn center(&self) -> (usize, usize) {
+        (self.width() / 2, self.height() / 2)
+    }
+
     pub fn row(&self, index: usize) -> &[char] {
         &self.0[index]
     }
